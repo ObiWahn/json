@@ -169,7 +169,7 @@ namespace tao::json
             m_object_keys.emplace_back();
          }
 
-         void key( const std::string& v )
+         void key( const std::string_view& v )
          {
             if( !m_match ) {
                m_current.push_back( nullptr );
@@ -189,14 +189,9 @@ namespace tao::json
             }
          }
 
-         void key( const std::string_view v )
+         void key( const char* v, std::size_t len)
          {
-            key( std::string( v ) );
-         }
-
-         void key( const char* v )
-         {
-            key( std::string( v ) );
+            key( std::string( v, len ) );
          }
 
          void member() noexcept
